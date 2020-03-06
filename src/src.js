@@ -82,10 +82,10 @@ window.addEventListener('load', function(){
           if (elapsedTime <= allowedTime) {
             if (Math.abs(touchObject.pageY - startY) < 66) {
               if ( (touchObject.pageX-startX) > 66) {
-                if (count == pages) {count = 1;} else {count++;}
+                if (count == 1) {count = pages;} else {count--;}
               }
               if ( (touchObject.pageX-startX) < -66) {
-                if (count == 1) {count = pages;} else {count--;}
+                if (count == pages) {count = 1;} else {count++;}
               }
             }
           }
