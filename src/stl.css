@@ -19,7 +19,7 @@ body {
 	width: 3.125vh;
 	height: 3.125vh;
   background-color: #303030;
-	padding: 1px;
+	padding: 2px;
 }
 
 
@@ -27,19 +27,19 @@ body {
 	width: 3.125vh;
 	height: 3.125vh;
   background-color: #97ff05;
-	padding: 1px;
+	padding: 2px;
 }
 
 .dolphin {
 	width: 3.125vh;
 	height: 3.125vh;
   background-color: #2bccbc;
-	padding: 1px;
+	padding: 2px;
 }
 
 .monkey {
 	width: 3.125vh;
 	height: 3.125vh;
   background-color: #ede053;
-	padding: 1px
+	padding: 2px;
 }
