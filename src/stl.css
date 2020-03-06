@@ -16,30 +16,30 @@ body {
 }
 
 .excel {
-	width: 1.25vh;
-	height: 1.25vh;
+	width: 3.125vh;
+	height: 3.125vh;
   background-color: #303030;
 	padding: 1px;
 }
 
 
 .snake {
-	width: 1.25vh;
-	height: 1.25vh;
+	width: 3.125vh;
+	height: 3.125vh;
   background-color: #97ff05;
 	padding: 1px;
 }
 
 .dolphin {
-	width: 1.25vh;
-	height: 1.25vh;
+	width: 3.125vh;
+	height: 3.125vh;
   background-color: #2bccbc;
 	padding: 1px;
 }
 
 .monkey {
-	width: 1.25vh;
-	height: 1.25vh;
+	width: 3.125vh;
+	height: 3.125vh;
   background-color: #ede053;
 	padding: 1px
 }

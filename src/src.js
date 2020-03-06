@@ -1,16 +1,16 @@
 let story = document.createElement('div');
 document.body.appendChild(story);
 story.classList.add('story');
-for (let i = 0; i < 45*80; i++) {
+for (let i = 0; i < 18*32; i++) {
   let excel = document.createElement('div');
   story.appendChild(excel);
   excel.classList.add('excel');
 }
 let excel = document.getElementsByClassName('excel');
-let x = 1, y = 80;
-for (let i = 0; i < 45*80; i++) {
-	if (x>45) {
-  	x-=45;
+let x = 1, y = 32;
+for (let i = 0; i < 18*32; i++) {
+	if (x>18) {
+  	x-=18;
   	y--;
   }
   excel[i].setAttribute('posX', x);
@@ -64,7 +64,7 @@ window.addEventListener('keydown', function(e) {
 			break;
 	}
 });
-
+// Свайпинг
 window.addEventListener('load', function(){
     let touchsurface = document.getElementById('touchsurface');
     let startX, startY, allowedTime = 666, elapsedTime, startTime;
