@@ -30,6 +30,13 @@ body {
 	padding: 2px;
 }
 
+.dolphin {
+	width: 6.25vh;
+	height: 6.25vh;
+  background-color: yellow;
+	padding: 2px;
+}
+
 .monkey {
 	width: 6.25vh;
 	height: 6.25vh;

@@ -72,59 +72,42 @@ window.addEventListener('keydown', function(e) {
 		}
 	}
 });
+
 window.addEventListener('load', function(){
+    let touchsurface = document.getElementById('touchsurface');
+    let startX, startY, allowedTime = 666, elapsedTime, startTime;
 
-    let touchsurface = document.getElementById('touchsurface'),
-        startX,
-        startY,
-        dist,
-        threshold = 60, //required min distance traveled to be considered swipe
-        allowedTime = 400, // maximum time allowed to travel that distance
-        elapsedTime,
-        startTime
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchObject = e.changedTouches[0];
+        startX = touchObject.pageX;
+        startY = touchObject.pageY;
+        startTime = new Date().getTime();
+        e.preventDefault();
+    }, false);
 
-    console.log(touchsurface);
+    touchsurface.addEventListener('touchmove', function(e){ e.preventDefault() }, false)
 
-    function handleswipe(isrightswipe){
-        if (isrightswipe) {
-          if (count == pages ) {
-            count = 1;
-          } else {
-            count++;
+    touchsurface.addEventListener('touchend', function(e){
+          var touchObject = e.changedTouches[0];
+          elapsedTime = new Date().getTime() - startTime;
+          if (elapsedTime <= allowedTime) {
+            if (Math.abs(touchObject.pageY - startY) < 66) {
+              if ( (touchObject.pageX-startX) > 66) {
+                if (count == pages ) {
+                  count = 1;
+                } else {
+                  count++;
+                }
+              }
+              if ( (touchObject.pageX-startX) < -66) {
+                if (count == 1 ) {
+        					count = pages;
+        				} else {
+                  count--;
+                }
+              }
+            }
           }
-          console.log(count);
-        }
-
-    }
-    if (touchsurface) {
-      touchsurface.addEventListener('touchstart', function(e){
-          var touchobj = e.changedTouches[0]
-          dist = 0
-          startX = touchobj.pageX
-          startY = touchobj.pageY
-          startTime = new Date().getTime() // record time when finger first makes contact with surface
-          e.preventDefault()
-      }, false)
-    }
-
-    if (touchsurface) {
-      touchsurface.addEventListener('touchmove', function(e){
-          e.preventDefault() // prevent scrolling when inside DIV
-      }, false)
-    }
-
-    if (touchsurface) {
-      touchsurface.addEventListener('touchend', function(e){
-          var touchobj = e.changedTouches[0]
-          dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
-          elapsedTime = new Date().getTime() - startTime // get time elapsed
-          // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
-          var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100)
-          handleswipe(swiperightBol)
-          e.preventDefault()
-      }, false)
-    }
-
-
-
-}, false)
+          e.preventDefault();
+      }, false);
+}, false);
