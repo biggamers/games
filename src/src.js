@@ -1,16 +1,16 @@
 let story = document.createElement('div');
 document.body.appendChild(story);
 story.classList.add('story');
-for (let i = 0; i < 144; i++) {
+for (let i = 0; i < 45*80; i++) {
   let excel = document.createElement('div');
   story.appendChild(excel);
   excel.classList.add('excel');
 }
 let excel = document.getElementsByClassName('excel');
-let x = 1, y = 12;
-for (let i = 0; i < 144; i++) {
-	if (x>12) {
-  	x-=12;
+let x = 1, y = 80;
+for (let i = 0; i < 45*80; i++) {
+	if (x>45) {
+  	x-=45;
   	y--;
   }
   excel[i].setAttribute('posX', x);
@@ -53,17 +53,15 @@ let interval = setInterval(start, 200);
 
 // Нажатие клавиш
 window.addEventListener('keydown', function(e) {
-	if (steps) {
-		switch (e.keyCode) {
-			case 37:
-			case 65:
-				if (count == 1 ) {count = pages;} else {count--;}
-				break;
-			case 39:
-			case 68:
-        if (count == pages ) {count = 1;} else {count++;}
-				break;
-		}
+  switch (e.keyCode) {
+		case 37:
+		case 65:
+			if (count == 1 ) {count = pages;} else {count--;}
+			break;
+		case 39:
+		case 68:
+      if (count == pages ) {count = 1;} else {count++;}
+			break;
 	}
 });
 

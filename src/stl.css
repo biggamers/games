@@ -4,7 +4,7 @@
 
 body {
 	margin: auto;
-	background: #444444;
+	background: #fff0fb;
 }
 
 .story {
@@ -16,30 +16,30 @@ body {
 }
 
 .excel {
-	width: 6.25vh;
-	height: 6.25vh;
-  background-color: black;
-	padding: 2px;
+	width: 1.25vh;
+	height: 1.25vh;
+  background-color: #303030;
+	padding: 1px;
 }
 
 
 .snake {
-	width: 6.25vh;
-	height: 6.25vh;
-  background-color: yellow;
-	padding: 2px;
+	width: 1.25vh;
+	height: 1.25vh;
+  background-color: #97ff05;
+	padding: 1px;
 }
 
 .dolphin {
-	width: 6.25vh;
-	height: 6.25vh;
-  background-color: blue;
-	padding: 2px;
+	width: 1.25vh;
+	height: 1.25vh;
+  background-color: #2bccbc;
+	padding: 1px;
 }
 
 .monkey {
-	width: 6.25vh;
-	height: 6.25vh;
-  background-color: green;
-	padding: 2px;
+	width: 1.25vh;
+	height: 1.25vh;
+  background-color: #ede053;
+	padding: 1px
 }
