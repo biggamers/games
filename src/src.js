@@ -72,7 +72,7 @@ window.addEventListener('keydown', function(e) {
 		}
 	}
 });
-window.addEventListener('load', function(e){
+window.addEventListener('load', function(){
 
     let touchsurface = document.getElementById('touchsurface'),
         startX,
