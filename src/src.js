@@ -58,7 +58,7 @@ window.addEventListener('keydown', function(e) {
 				} else {
           count--;
         }
-        console.log(count);
+
 				break;
 			case 39:
 			case 83:
@@ -67,14 +67,14 @@ window.addEventListener('keydown', function(e) {
         } else {
           count++;
         }
-        console.log(count);
+
 				break;
 		}
 	}
 });
 window.addEventListener('load', function(e){
 
-    var touchsurface = document.getElementById('touchsurface'),
+    let touchsurface = document.getElementById('touchsurface'),
         startX,
         startY,
         dist,
@@ -82,6 +82,8 @@ window.addEventListener('load', function(e){
         allowedTime = 400, // maximum time allowed to travel that distance
         elapsedTime,
         startTime
+
+    console.log(touchsurface);
 
     function handleswipe(isrightswipe){
         if (isrightswipe) {
