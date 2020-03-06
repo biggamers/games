@@ -1,27 +1,24 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
-  background-color: white;
-}
-.parent {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    ackground-color: black;
-    top: 0;
-    left: 0;
-    overflow: auto;
+	margin: auto;
+	background: linear-gradient(90deg, gray, black 23% 77%, gray);
 }
 
-.block {
-    width: 99%;
-    height: 99%;
-    position: absolute;
-    background-color: black;
-    opacity: .8;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+.story {
+	width: 56.25vh;
+	height: 100vh;
+  background-color: black;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+  wid
+}
 
-
+.excel {
+	width: 6.25vh;
+	height: 6.25vh;
+	padding: 2px;
 }
