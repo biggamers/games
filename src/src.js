@@ -24,27 +24,31 @@ function start() {
   switch (count) {
     case 1:
       for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('snake') };
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('dolphin') };
       for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('monkey') };
-
       break;
     case 2:
       for (let i = 0; i < excel.length; i++) { excel[i].classList.add('snake') };
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('dolphin') };
       for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('monkey') };
-
       break;
     case 3:
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.add('dolphin') };
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('monkey') };
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('snake') };
+      break;
+    case 4:
       for (let i = 0; i < excel.length; i++) { excel[i].classList.add('monkey') };
       for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('snake') };
-
+      for (let i = 0; i < excel.length; i++) { excel[i].classList.remove('dolphin') };
       break;
   }
-  console.log(count, excel.length);
+
 
 }
 
 // Запуск
-let count = 1, pages = 3;
-let steps = true;
+let count = 1, pages = 4;
 let interval = setInterval(start, 200);
 
 // Нажатие клавиш
@@ -53,21 +57,11 @@ window.addEventListener('keydown', function(e) {
 		switch (e.keyCode) {
 			case 37:
 			case 65:
-				if (count == 1 ) {
-					count = pages;
-				} else {
-          count--;
-        }
-
+				if (count == 1 ) {count = pages;} else {count--;}
 				break;
 			case 39:
-			case 83:
-        if (count == pages ) {
-          count = 1;
-        } else {
-          count++;
-        }
-
+			case 68:
+        if (count == pages ) {count = 1;} else {count++;}
 				break;
 		}
 	}
