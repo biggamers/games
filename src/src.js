@@ -74,10 +74,7 @@ window.addEventListener('load', function(){
         startX = touchObject.pageX;
         startY = touchObject.pageY;
         startTime = new Date().getTime();
-        e.preventDefault();
     }, false);
-
-    touchsurface.addEventListener('touchmove', function(e){e.preventDefault()}, false)
 
     touchsurface.addEventListener('touchend', function(e){
           var touchObject = e.changedTouches[0];
