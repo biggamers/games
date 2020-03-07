@@ -134,7 +134,7 @@ function start() {
         		let b = snakeBody[snakeBody.length-1].getAttribute('posY');
         		snakeBody.push(document.querySelector('[posX = "' + a + '"][posY = "' + b +'"]'));
         		createMouse();
-            createAlpaca();
+            setTimeout(() => { createAlpaca(); }, 1000);
         	}
           break;
         case 'night':
@@ -199,7 +199,7 @@ function start() {
             let b = snakeBody[snakeBody.length-1].getAttribute('posY');
             snakeBody.push(document.querySelector('[posX = "' + a + '"][posY = "' + b +'"]'));
             createMouse();
-            createAlpaca();
+            setTimeout(() => { createAlpaca(); }, 1000);
           }
           break;
       }
