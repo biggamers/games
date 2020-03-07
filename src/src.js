@@ -106,6 +106,7 @@ function start() {
         	}
           // Условия окончания игры
         	if (snakeBody[0].classList.contains('snakeBody') || snakeBody[0].classList.contains('alpaca')) {
+            endAudio.play();
             clearInterval(interval);
             snakeBody[0].style.background = 'url("src/cry.png") center no-repeat';
     				snakeBody[0].style.backgroundSize = 'cover';
@@ -121,10 +122,12 @@ function start() {
           if (touchClick) {
             mouse.classList.remove('mouse');
             createMouse();
+            turnAudio.play();
             touchClick = false;
           }
         	// Поедание мыши
         	if (snakeBody[0].getAttribute('posX') == mouse.getAttribute('posX') && snakeBody[0].getAttribute('posY') == mouse.getAttribute('posY') ) {
+            scoreAudio.play();
         		mouse.classList.remove('mouse');
         		snakeBody[0].classList.add('snakeHead');
         		let a = snakeBody[snakeBody.length-1].getAttribute('posX');
@@ -168,6 +171,7 @@ function start() {
           }
           // Условия окончания игры
           if (snakeBody[0].classList.contains('snakeBody') || snakeBody[0].classList.contains('alpaca')) {
+            endAudio.play();
             clearInterval(interval);
             snakeBody[0].style.background = 'url("src/cry.png") center no-repeat';
             snakeBody[0].style.backgroundSize = 'cover';
@@ -183,10 +187,12 @@ function start() {
           if (touchClick) {
             mouse.classList.remove('mouse');
             createMouse();
+            turnAudio.play();
             touchClick = false;
           }
           // Поедание мыши
           if (snakeBody[0].getAttribute('posX') == mouse.getAttribute('posX') && snakeBody[0].getAttribute('posY') == mouse.getAttribute('posY') ) {
+            scoreAudio.play();
             mouse.classList.remove('mouse');
             snakeBody[0].classList.add('snakeHead');
             let a = snakeBody[snakeBody.length-1].getAttribute('posX');
@@ -388,6 +394,11 @@ function start() {
   touchStep = true;
   randomTime++;
 }
+// Подгружаем звуки
+let turnAudio = new Audio(), scoreAudio = new Audio(), endAudio = new Audio();
+turnAudio.src = "src/turn.mp3";
+scoreAudio.src = "src/score.mp3";
+endAudio.src = "src/end.mp3";
 
 // Запуск
 let arrowMouse = [document.querySelector('[posX = "13"][posY = "6"]'),document.querySelector('[posX = "14"][posY = "6"]'),document.querySelector('[posX = "13"][posY = "7"]'),document.querySelector('[posX = "14"][posY = "7"]'),document.querySelector('[posX = "15"][posY = "7"]'),document.querySelector('[posX = "11"][posY = "8"]'),document.querySelector('[posX = "12"][posY = "8"]'),document.querySelector('[posX = "13"][posY = "8"]'),document.querySelector('[posX = "15"][posY = "8"]'),document.querySelector('[posX = "16"][posY = "8"]'),document.querySelector('[posX = "11"][posY = "9"]'),document.querySelector('[posX = "16"][posY = "9"]'),document.querySelector('[posX = "17"][posY = "9"]'),document.querySelector('[posX = "5"][posY = "13"]'),document.querySelector('[posX = "6"][posY = "13"]'),document.querySelector('[posX = "4"][posY = "12"]'),document.querySelector('[posX = "5"][posY = "12"]'),document.querySelector('[posX = "6"][posY = "12"]'),document.querySelector('[posX = "3"][posY = "11"]'),document.querySelector('[posX = "4"][posY = "11"]'),document.querySelector('[posX = "6"][posY = "11"]'),document.querySelector('[posX = "7"][posY = "11"]'),document.querySelector('[posX = "8"][posY = "11"]'),document.querySelector('[posX = "2"][posY = "10"]'),document.querySelector('[posX = "3"][posY = "10"]'),document.querySelector('[posX = "8"][posY = "10"]')];
