@@ -450,27 +450,26 @@ window.addEventListener('load', function(){
   touchsurface.addEventListener('touchend', function(e){
     let touchObject = e.changedTouches[0];
     elapsedTime = new Date().getTime() - startTime;
-    if (elapsedTime <= 111) { touchClick = true; }
-    if ( (elapsedTime <= 666) && touchStep ) {
-      if (Math.abs(touchObject.pageY - startY) < 66) {
-        if ( (touchObject.pageX-startX) > 66) {
+    if ( (elapsedTime <= 500) && touchStep ) {
+      if (Math.abs(touchObject.pageY - startY) < 100) {
+        if ( (touchObject.pageX-startX) > 100) {
           if (stage == 'story') { touch = 'right'; }
           else if (touch != 'left') { touch = 'right' }
-        }
-        if ( (touchObject.pageX-startX) < -66) {
+        } else if (elapsedTime <= 100) { touchClick = true; }
+        if ( (touchObject.pageX-startX) < -100) {
           if (stage == 'story') { touch = 'left'; }
           else if (touch != 'right') { touch = 'left' }
-        }
+        } else if (elapsedTime <= 100) { touchClick = true; }
       }
-      if (Math.abs(touchObject.pageX - startX) < 66) {
-        if ( (touchObject.pageY-startY) > 66) {
+      if (Math.abs(touchObject.pageX - startX) < 100) {
+        if ( (touchObject.pageY-startY) > 100) {
           if (stage == 'story') { touch = 'down'; }
           else if (touch != 'up') { touch = 'down' }
-        }
-        if ( (touchObject.pageY-startY) < -66) {
+        } else if (elapsedTime <= 100) { touchClick = true; }
+        if ( (touchObject.pageY-startY) < -100) {
           if (stage == 'story') { touch = 'up'; }
           else if (touch != 'down') { touch = 'up' }
-        }
+        } else if (elapsedTime <= 100) { touchClick = true; }
       }
       touchStep = false;
     }
