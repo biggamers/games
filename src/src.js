@@ -437,20 +437,20 @@ window.addEventListener('keydown', function(e) {
     touchStep = false;
   }
 });
-// Свайпинг
+/* Свайпинг cтарый
 window.addEventListener('load', function(){
   let touchsurface = document.getElementById('touchsurface');
   let startX, startY, elapsedTime, startTime;
   touchsurface.addEventListener('touchstart', function(e){
-    let touchObject = e.changedTouches[0];
-    startX = touchObject.pageX;
-    startY = touchObject.pageY;
+    let touchInitial = e.changedTouches[0];
+    startX = touchInitial.pageX;
+    startY = touchInitial.pageY;
     startTime = new Date().getTime();
   }, false);
   touchsurface.addEventListener('touchend', function(e){
     let touchObject = e.changedTouches[0];
     elapsedTime = new Date().getTime() - startTime;
-    if ( (elapsedTime <= 500) && touchStep ) {
+    if ( (elapsedTime <= 666) && touchStep ) {
       if (Math.abs(touchObject.pageY - startY) < 100) {
         if ( (touchObject.pageX-startX) > 100) {
           if (stage == 'story') { touch = 'right'; }
@@ -475,4 +475,38 @@ window.addEventListener('load', function(){
     }
     e.preventDefault();
   }, false);
+}, false);
+*/
+let initialPoint, finalPoint, elapsedTime, startTime;
+document.addEventListener('touchstart', function(event) {
+  event.stopPropagation();
+  initialPoint=event.changedTouches[0];
+  startTime = new Date().getTime();
+}, false);
+document.addEventListener('touchend', function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  finalPoint=event.changedTouches[0];
+  elapsedTime = new Date().getTime() - startTime;
+  let xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
+  let yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+  if (xAbs > 20 || yAbs > 20) {
+    if (xAbs > yAbs) {
+      if (finalPoint.pageX < initialPoint.pageX) {
+        if (stage == 'story') { touch = 'left'; }
+        else if (touch != 'right') { touch = 'left' }
+      } else {
+        if (stage == 'story') { touch = 'right'; }
+        else if (touch != 'left') { touch = 'right' }
+      }
+    } else {
+      if (finalPoint.pageY < initialPoint.pageY) {
+        if (stage == 'story') { touch = 'up'; }
+        else if (touch != 'down') { touch = 'up' }
+      } else {
+        if (stage == 'story') { touch = 'down'; }
+        else if (touch != 'up') { touch = 'down' }
+      }
+    }
+  } else if (elapsedTime <= 100) { touchClick = true; }
 }, false);
