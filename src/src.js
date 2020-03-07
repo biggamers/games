@@ -22,11 +22,11 @@ let snakeBody = new Array();
 function createSnake() {
   function generateSnake() {
   	let posX = Math.round(Math.random()*15 + 3);
-  	let posY = Math.round(Math.random()*15 + 17);
+  	let posY = Math.round(Math.random()*13 + 19);
   	return [posX, posY];
   }
-  let coordinates = generateSnake();
-  snakeBody = [document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + coordinates[1] + '"]'), document.querySelector('[posX = "' + (coordinates[0]-1) + '"][posY = "' + coordinates[1] + '"]'), document.querySelector('[posX = "' + (coordinates[0]-2) + '"][posY = "' + coordinates[1] + '"]')];
+  let snakeCoordinates = generateSnake();
+  snakeBody = [document.querySelector('[posX = "' + snakeCoordinates[0] + '"][posY = "' + snakeCoordinates[1] + '"]'), document.querySelector('[posX = "' + (snakeCoordinates[0]-1) + '"][posY = "' + snakeCoordinates[1] + '"]'), document.querySelector('[posX = "' + (snakeCoordinates[0]-2) + '"][posY = "' + snakeCoordinates[1] + '"]')];
   for (let i = 0; i < snakeBody.length; i++) {
   	snakeBody[i].classList.add('snakeBody');
   }
@@ -80,28 +80,28 @@ function start() {
             createAlpaca();
             startGame = false;
           }
-          let snakeCoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
+          // Начало движения
+          coordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
         	snakeBody[0].classList.remove('snakeHead');
         	snakeBody[snakeBody.length-1].classList.remove('snakeBody');
         	snakeBody.pop();
-
         	// Смена направления
         	switch (touch) {
         		case 'right':
-        			if (snakeCoordinates[0]==18) { snakeCoordinates[0]=0; }
-        			snakeBody.unshift(document.querySelector('[posX = "' + (+snakeCoordinates[0] + 1) + '"][posY = "' + snakeCoordinates[1] + '"]'));
+        			if (coordinates[0]==18) { coordinates[0]=0; }
+        			snakeBody.unshift(document.querySelector('[posX = "' + (+coordinates[0] + 1) + '"][posY = "' + coordinates[1] + '"]'));
         			break;
         		case 'up':
-        			if (snakeCoordinates[1]==32) { snakeCoordinates[1]=0; }
-        			snakeBody.unshift(document.querySelector('[posX = "' + snakeCoordinates[0] + '"][posY = "' + (+snakeCoordinates[1] + 1) + '"]'));
+        			if (coordinates[1]==32) { coordinates[1]=0; }
+        			snakeBody.unshift(document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + (+coordinates[1] + 1) + '"]'));
         			break;
         		case 'left':
-        			if (snakeCoordinates[0]==1) { snakeCoordinates[0]=19; }
-        			snakeBody.unshift(document.querySelector('[posX = "' + (+snakeCoordinates[0] - 1) + '"][posY = "' + snakeCoordinates[1] + '"]'));
+        			if (coordinates[0]==1) { coordinates[0]=19; }
+        			snakeBody.unshift(document.querySelector('[posX = "' + (+coordinates[0] - 1) + '"][posY = "' + coordinates[1] + '"]'));
         			break;
         		case 'down':
-        			if (snakeCoordinates[1]==1) { snakeCoordinates[1]=33; }
-        			snakeBody.unshift(document.querySelector('[posX = "' + snakeCoordinates[0] + '"][posY = "' + (+snakeCoordinates[1] -1) + '"]'));
+        			if (coordinates[1]==1) { coordinates[1]=33; }
+        			snakeBody.unshift(document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + (+coordinates[1] -1) + '"]'));
         			break;
         	}
           // Условия окончания игры
@@ -112,20 +112,18 @@ function start() {
     				snakeBody[0].style.border = '0px';
         		if (snakeBody.length == 3) { setTimeout(() => {alert(`IT'S OVER!!\nYou scored NOTHING.... \n\n\nP.S. Do not eat alpacas.`);}, 600); }
         		else { setTimeout(() => { alert(`IT'S OVER!!\nYou collect ${snakeBody.length-3} dead mouses.`);}, 1000); }
-
-
           }
-
-
           snakeBody[0].classList.add('snakeHead');
         	for (let i = 0; i < snakeBody.length; i++) {
         		snakeBody[i].classList.add('snakeBody');
         	}
-
-
-
-
-        	// Поедание мышей
+          // Клик по мыши
+          if (touchClick) {
+            mouse.classList.remove('mouse');
+            createMouse();
+            touchClick = false;
+          }
+        	// Поедание мыши
         	if (snakeBody[0].getAttribute('posX') == mouse.getAttribute('posX') && snakeBody[0].getAttribute('posY') == mouse.getAttribute('posY') ) {
         		mouse.classList.remove('mouse');
         		snakeBody[0].classList.add('snakeHead');
@@ -135,20 +133,71 @@ function start() {
         		createMouse();
             createAlpaca();
         	}
-
-
-
-          console.log(state,stage);
           break;
         case 'night':
 // Игра ночью
-
-
-
-          console.log(state,stage);
+          if (startGame) {
+            createSnake();
+            createMouse();
+            createAlpaca();
+            startGame = false;
+          }
+          // Начало движения
+          coordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
+          snakeBody[0].classList.remove('snakeHead');
+          snakeBody[snakeBody.length-1].classList.remove('snakeBody');
+          snakeBody.pop();
+          // Смена направления
+          switch (touch) {
+            case 'right':
+              if (coordinates[0]==18) { coordinates[0]=0; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+coordinates[0] + 1) + '"][posY = "' + coordinates[1] + '"]'));
+              break;
+            case 'up':
+              if (coordinates[1]==32) { coordinates[1]=0; }
+              snakeBody.unshift(document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + (+coordinates[1] + 1) + '"]'));
+              break;
+            case 'left':
+              if (coordinates[0]==1) { coordinates[0]=19; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+coordinates[0] - 1) + '"][posY = "' + coordinates[1] + '"]'));
+              break;
+            case 'down':
+              if (coordinates[1]==1) { coordinates[1]=33; }
+              snakeBody.unshift(document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + (+coordinates[1] -1) + '"]'));
+              break;
+          }
+          // Условия окончания игры
+          if (snakeBody[0].classList.contains('snakeBody') || snakeBody[0].classList.contains('alpaca')) {
+            clearInterval(interval);
+            snakeBody[0].style.background = 'url("src/cry.png") center no-repeat';
+            snakeBody[0].style.backgroundSize = 'cover';
+            snakeBody[0].style.border = '0px';
+            if (snakeBody.length == 3) { setTimeout(() => {alert(`IT'S OVER!!\nYou scored NOTHING.... \n\n\nP.S. Do not eat alpacas.`);}, 600); }
+            else { setTimeout(() => { alert(`IT'S OVER!!\nYou collect ${snakeBody.length-3} dead mouses.`);}, 1000); }
+          }
+          snakeBody[0].classList.add('snakeHead');
+          for (let i = 0; i < snakeBody.length; i++) {
+            snakeBody[i].classList.add('snakeBody');
+          }
+          // Клик по мыши
+          if (touchClick) {
+            mouse.classList.remove('mouse');
+            createMouse();
+            touchClick = false;
+          }
+          // Поедание мыши
+          if (snakeBody[0].getAttribute('posX') == mouse.getAttribute('posX') && snakeBody[0].getAttribute('posY') == mouse.getAttribute('posY') ) {
+            mouse.classList.remove('mouse');
+            snakeBody[0].classList.add('snakeHead');
+            let a = snakeBody[snakeBody.length-1].getAttribute('posX');
+            let b = snakeBody[snakeBody.length-1].getAttribute('posY');
+            snakeBody.push(document.querySelector('[posX = "' + a + '"][posY = "' + b +'"]'));
+            createMouse();
+            createAlpaca();
+          }
           break;
-    }
-        break;
+      }
+      break;
     case 'story':
       switch (state) {
         case 'day':
@@ -158,34 +207,38 @@ function start() {
             createSnake();
             startStory = false;
           }
-          let dayCoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
+          // Рандомное движения
+          сoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
         	snakeBody[0].classList.remove('snakeHead');
         	snakeBody[snakeBody.length-1].classList.remove('snakeBody');
         	snakeBody.pop();
-          switch (Math.round(Math.random()*3 + 1)) {
+          if (randomTime % (randomMove*5) == 0) {
+            if  (randomMove > 2) { randomMove = Math.round(Math.random()+1); }
+            else { randomMove = Math.round(Math.random()+1) + 2; }
+          }
+          switch (randomMove) {
             case 1:
-              if (dayCoordinates[0]==18) { dayCoordinates[0]=0; }
-              snakeBody.unshift(document.querySelector('[posX = "' + (+dayCoordinates[0] + 1) + '"][posY = "' + dayCoordinates[1] + '"]'));
+              if (сoordinates[0]==18) { сoordinates[0]=0; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+сoordinates[0] + 1) + '"][posY = "' + сoordinates[1] + '"]'));
               break;
             case 2:
-              if (dayCoordinates[1]==32) { dayCoordinates[1]=0; }
-              snakeBody.unshift(document.querySelector('[posX = "' + dayCoordinates[0] + '"][posY = "' + (+dayCoordinates[1] + 1) + '"]'));
+              if (сoordinates[0]==1) { сoordinates[0]=19; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+сoordinates[0] - 1) + '"][posY = "' + сoordinates[1] + '"]'));
               break;
             case 3:
-              if (dayCoordinates[0]==1) { dayCoordinates[0]=19; }
-              snakeBody.unshift(document.querySelector('[posX = "' + (+dayCoordinates[0] - 1) + '"][posY = "' + dayCoordinates[1] + '"]'));
+              if (сoordinates[1]==32) { сoordinates[1]=18; }
+              snakeBody.unshift(document.querySelector('[posX = "' + сoordinates[0] + '"][posY = "' + (+сoordinates[1] + 1) + '"]'));
               break;
             case 4:
-              if (dayCoordinates[1]==1) { dayCoordinates[1]=33; }
-              snakeBody.unshift(document.querySelector('[posX = "' + dayCoordinates[0] + '"][posY = "' + (+dayCoordinates[1] -1) + '"]'));
+              if (сoordinates[1]==19) { сoordinates[1]=33; }
+              snakeBody.unshift(document.querySelector('[posX = "' + сoordinates[0] + '"][posY = "' + (+сoordinates[1] -1) + '"]'));
               break;
           }
           snakeBody[0].classList.add('snakeHead');
         	for (let i = 0; i < snakeBody.length; i++) {
         		snakeBody[i].classList.add('snakeBody');
         	}
-
-
+          // Переключение между режимами
           switch (touch) {
             case 'up':
               for (let i = 0; i < snakeBody.length; i++) {
@@ -226,7 +279,6 @@ function start() {
               touch = 'none'
               break;
           }
-          console.log(state,stage,touchStep);
           break;
         case 'night':
 // Сторик ночью
@@ -235,34 +287,38 @@ function start() {
             createSnake();
             startStory = false;
           }
-          let nightCoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
+          // Рандомное движения
+          сoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
         	snakeBody[0].classList.remove('snakeHead');
         	snakeBody[snakeBody.length-1].classList.remove('snakeBody');
         	snakeBody.pop();
-          switch (Math.round(Math.random()*3 + 1)) {
+          if (randomTime % (randomMove*5) == 0) {
+            if  (randomMove > 2) { randomMove = Math.round(Math.random()+1); }
+            else { randomMove = Math.round(Math.random()+1) + 2; }
+          }
+          switch (randomMove) {
             case 1:
-              if (nightCoordinates[0]==18) { nightCoordinates[0]=0; }
-              snakeBody.unshift(document.querySelector('[posX = "' + (+nightCoordinates[0] + 1) + '"][posY = "' + nightCoordinates[1] + '"]'));
+              if (сoordinates[0]==18) { сoordinates[0]=0; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+сoordinates[0] + 1) + '"][posY = "' + сoordinates[1] + '"]'));
               break;
             case 2:
-              if (nightCoordinates[1]==32) { nightCoordinates[1]=0; }
-              snakeBody.unshift(document.querySelector('[posX = "' + nightCoordinates[0] + '"][posY = "' + (+nightCoordinates[1] + 1) + '"]'));
+              if (сoordinates[0]==1) { сoordinates[0]=19; }
+              snakeBody.unshift(document.querySelector('[posX = "' + (+сoordinates[0] - 1) + '"][posY = "' + сoordinates[1] + '"]'));
               break;
             case 3:
-              if (nightCoordinates[0]==1) { nightCoordinates[0]=19; }
-              snakeBody.unshift(document.querySelector('[posX = "' + (+nightCoordinates[0] - 1) + '"][posY = "' + nightCoordinates[1] + '"]'));
+              if (сoordinates[1]==32) { сoordinates[1]=18; }
+              snakeBody.unshift(document.querySelector('[posX = "' + сoordinates[0] + '"][posY = "' + (+сoordinates[1] + 1) + '"]'));
               break;
             case 4:
-              if (nightCoordinates[1]==1) { nightCoordinates[1]=33; }
-              snakeBody.unshift(document.querySelector('[posX = "' + nightCoordinates[0] + '"][posY = "' + (+nightCoordinates[1] -1) + '"]'));
+              if (сoordinates[1]==19) { сoordinates[1]=33; }
+              snakeBody.unshift(document.querySelector('[posX = "' + сoordinates[0] + '"][posY = "' + (+сoordinates[1] -1) + '"]'));
               break;
           }
           snakeBody[0].classList.add('snakeHead');
         	for (let i = 0; i < snakeBody.length; i++) {
         		snakeBody[i].classList.add('snakeBody');
         	}
-
-
+          // Переключение между режимами
           switch (touch) {
             case 'up':
               for (let i = 0; i < snakeBody.length; i++) {
@@ -272,7 +328,6 @@ function start() {
               delete snakeBody;
               startGame = true;
               stage = 'game'
-              touch = 'none'
               break;
             case 'down':
               for (let i = 0; i < snakeBody.length; i++) {
@@ -282,7 +337,6 @@ function start() {
               delete snakeBody;
               startGame = true;
               stage = 'game'
-              touch = 'none'
               break;
             case 'left':
               for (let i = 0; i < snakeBody.length; i++) {
@@ -305,18 +359,16 @@ function start() {
               touch = 'none'
               break;
           }
-          console.log(state,stage,touchStep);
           break;
       }
       break;
   }
   touchStep = true;
+  randomTime++;
 }
-
 // Запуск
-let startStory = true, startGame = false, touchStep = true, touchClick = false; touch = 'none', state = 'day'; stage = 'story';
+let startStory = true, startGame = false, touchStep = true, touchClick = false, touch = 'none', state = 'day', stage = 'story', coordinates, randomMove = 4, randomTime = 0;
 let interval = setInterval(start, 250);
-
 // Нажатие клавиш
 window.addEventListener('keydown', function(e) {
   if (touchStep) {
@@ -327,19 +379,23 @@ window.addEventListener('keydown', function(e) {
   			break;
   		case 37:
   		case 65:
-  			touch = 'left';
+        if (stage == 'story') { touch = 'left'; }
+        else if (touch != 'right') { touch = 'left' }
   			break;
       case 38:
       case 87:
-        touch = 'up';
+        if (stage == 'story') { touch = 'up'; }
+        else if (touch != 'down') { touch = 'up' }
         break;
   		case 39:
   		case 68:
-        touch = 'right'
+        if (stage == 'story') { touch = 'right'; }
+        else if (touch != 'left') { touch = 'right' }
   			break;
       case 40:
       case 83:
-        touch = 'down';
+        if (stage == 'story') { touch = 'down'; }
+        else if (touch != 'up') { touch = 'down' }
         break;
   	}
     touchStep = false;
@@ -349,14 +405,12 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('load', function(){
   let touchsurface = document.getElementById('touchsurface');
   let startX, startY, elapsedTime, startTime;
-
   touchsurface.addEventListener('touchstart', function(e){
     let touchObject = e.changedTouches[0];
     startX = touchObject.pageX;
     startY = touchObject.pageY;
     startTime = new Date().getTime();
   }, false);
-
   touchsurface.addEventListener('touchend', function(e){
     let touchObject = e.changedTouches[0];
     elapsedTime = new Date().getTime() - startTime;
@@ -365,29 +419,21 @@ window.addEventListener('load', function(){
       if (Math.abs(touchObject.pageY - startY) < 66) {
         if ( (touchObject.pageX-startX) > 66) {
           if (stage == 'story') { touch = 'right'; }
-          else {
-            if (touch != 'left') { touch = 'right' }
-          }
+          else if (touch != 'left') { touch = 'right' }
         }
         if ( (touchObject.pageX-startX) < -66) {
           if (stage == 'story') { touch = 'left'; }
-          else {
-            if (touch != 'right') { touch = 'left' }
-          }
+          else if (touch != 'right') { touch = 'left' }
         }
       }
       if (Math.abs(touchObject.pageX - startX) < 66) {
         if ( (touchObject.pageY-startY) > 66) {
           if (stage == 'story') { touch = 'down'; }
-          else {
-            if (touch != 'up') { touch = 'down' }
-          }
+          else if (touch != 'up') { touch = 'down' }
         }
         if ( (touchObject.pageY-startY) < -66) {
           if (stage == 'story') { touch = 'up'; }
-          else {
-            if (touch != 'down') { touch = 'up' }
-          }
+          else if (touch != 'down') { touch = 'up' }
         }
       }
       touchStep = false;
