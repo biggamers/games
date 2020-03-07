@@ -7,9 +7,19 @@ body {
 	background: #fff0fb;
 }
 
-.story {
+.dayField {
 	width: 56.25vh;
 	height: 100vh;
+	background-color: #97ff05;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.nightField {
+	width: 56.25vh;
+	height: 100vh;
+	background-color: #303030;
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -18,28 +28,45 @@ body {
 .excel {
 	width: 3.125vh;
 	height: 3.125vh;
-  background-color: #303030;
 	padding: 2px;
 }
 
+.snakeBody {
+	background: url(../src/body.png);
+	background-size: 110%;
+	border-radius: 40%;
+	border: 2px solid #000;
+}
 
-.snake {
-	width: 3.125vh;
-	height: 3.125vh;
-  background-color: #97ff05;
-	padding: 2px;
+.snakeHead {
+	background: url(../src/head.png);
+	background-size: cover;
+	border-radius: 10%;
+	border: 0px;
+}
+
+.alpaca {
+	background: url(../src/alpa.png);
+	background-size: cover;
+	border-radius: 15%;
+}
+
+.mouse {
+	background: url(../src/mouse.png);
+	background-size: cover;
+	border-radius: 15%;
 }
 
 .dolphin {
 	width: 3.125vh;
 	height: 3.125vh;
-  background-color: #2bccbc;
+	background-color: #2bccbc;
 	padding: 2px;
 }
 
 .monkey {
 	width: 3.125vh;
 	height: 3.125vh;
-  background-color: #ede053;
+	background-color: #ede053;
 	padding: 2px;
 }
