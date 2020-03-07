@@ -35,7 +35,7 @@ body {
 	background: url(../src/body.png);
 	background-size: 110%;
 	border-radius: 40%;
-	border: 2px solid #000;
+	border: 1px solid #000;
 }
 
 .snakeHead {
