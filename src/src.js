@@ -508,5 +508,5 @@ document.addEventListener('touchend', function(event) {
         else if (touch != 'up') { touch = 'down' }
       }
     }
-  } else if (elapsedTime <= 100) { touchClick = true; }
+  } else if (elapsedTime <= 18) { touchClick = true; }
 }, false);
