@@ -238,6 +238,9 @@ function start() {
         	for (let i = 0; i < snakeBody.length; i++) {
         		snakeBody[i].classList.add('snakeBody');
         	}
+          // Стрелочки
+          for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.add('mouse'); }
+          for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.add('alpaca'); }
           // Переключение между режимами
           switch (touch) {
             case 'up':
@@ -246,6 +249,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startGame = true;
               stage = 'game'
               break;
@@ -255,6 +260,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startGame = true;
               stage = 'game'
               break;
@@ -264,6 +271,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startStory = true;
               state = 'night'
               touch = 'none'
@@ -274,6 +283,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startStory = true;
               state = 'night'
               touch = 'none'
@@ -318,6 +329,9 @@ function start() {
         	for (let i = 0; i < snakeBody.length; i++) {
         		snakeBody[i].classList.add('snakeBody');
         	}
+          // Стрелочки
+          for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.add('mouse'); }
+          for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.add('alpaca'); }
           // Переключение между режимами
           switch (touch) {
             case 'up':
@@ -326,6 +340,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startGame = true;
               stage = 'game'
               break;
@@ -335,6 +351,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startGame = true;
               stage = 'game'
               break;
@@ -344,6 +362,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startStory = true;
               state = 'day'
               touch = 'none'
@@ -354,6 +374,8 @@ function start() {
               }
               snakeBody[0].classList.remove('snakeHead');
               delete snakeBody;
+              for (let i = 0; i < arrowMouse.length; i++) { arrowMouse[i].classList.remove('mouse'); }
+              for (let i = 0; i < arrowAlpaca.length; i++) { arrowAlpaca[i].classList.remove('alpaca'); }
               startStory = true;
               state = 'day'
               touch = 'none'
@@ -366,7 +388,10 @@ function start() {
   touchStep = true;
   randomTime++;
 }
+
 // Запуск
+let arrowMouse = [document.querySelector('[posX = "13"][posY = "6"]'),document.querySelector('[posX = "14"][posY = "6"]'),document.querySelector('[posX = "13"][posY = "7"]'),document.querySelector('[posX = "14"][posY = "7"]'),document.querySelector('[posX = "15"][posY = "7"]'),document.querySelector('[posX = "11"][posY = "8"]'),document.querySelector('[posX = "12"][posY = "8"]'),document.querySelector('[posX = "13"][posY = "8"]'),document.querySelector('[posX = "15"][posY = "8"]'),document.querySelector('[posX = "16"][posY = "8"]'),document.querySelector('[posX = "11"][posY = "9"]'),document.querySelector('[posX = "16"][posY = "9"]'),document.querySelector('[posX = "17"][posY = "9"]'),document.querySelector('[posX = "5"][posY = "13"]'),document.querySelector('[posX = "6"][posY = "13"]'),document.querySelector('[posX = "4"][posY = "12"]'),document.querySelector('[posX = "5"][posY = "12"]'),document.querySelector('[posX = "6"][posY = "12"]'),document.querySelector('[posX = "3"][posY = "11"]'),document.querySelector('[posX = "4"][posY = "11"]'),document.querySelector('[posX = "6"][posY = "11"]'),document.querySelector('[posX = "7"][posY = "11"]'),document.querySelector('[posX = "8"][posY = "11"]'),document.querySelector('[posX = "2"][posY = "10"]'),document.querySelector('[posX = "3"][posY = "10"]'),document.querySelector('[posX = "8"][posY = "10"]')];
+let arrowAlpaca = [document.querySelector('[posX = "5"][posY = "6"]'),document.querySelector('[posX = "6"][posY = "6"]'),document.querySelector('[posX = "4"][posY = "7"]'),document.querySelector('[posX = "5"][posY = "7"]'),document.querySelector('[posX = "6"][posY = "7"]'),document.querySelector('[posX = "3"][posY = "8"]'),document.querySelector('[posX = "4"][posY = "8"]'),document.querySelector('[posX = "6"][posY = "8"]'),document.querySelector('[posX = "7"][posY = "8"]'),document.querySelector('[posX = "8"][posY = "8"]'),document.querySelector('[posX = "2"][posY = "9"]'),document.querySelector('[posX = "3"][posY = "9"]'),document.querySelector('[posX = "8"][posY = "9"]'),document.querySelector('[posX = "13"][posY = "13"]'),document.querySelector('[posX = "14"][posY = "13"]'),document.querySelector('[posX = "13"][posY = "12"]'),document.querySelector('[posX = "14"][posY = "12"]'),document.querySelector('[posX = "15"][posY = "12"]'),document.querySelector('[posX = "11"][posY = "11"]'),document.querySelector('[posX = "12"][posY = "11"]'),document.querySelector('[posX = "13"][posY = "11"]'),document.querySelector('[posX = "15"][posY = "11"]'),document.querySelector('[posX = "16"][posY = "11"]'),document.querySelector('[posX = "11"][posY = "10"]'),document.querySelector('[posX = "16"][posY = "10"]'),document.querySelector('[posX = "17"][posY = "10"]')];
 let startStory = true, startGame = false, touchStep = true, touchClick = false, touch = 'none', state = 'day', stage = 'story', coordinates, randomMove = 4, randomTime = 0;
 let interval = setInterval(start, 250);
 // Нажатие клавиш
